@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.apps')
 
 @section('content')
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -15,14 +15,16 @@
                 <div class="col-lg-7 col-md-7 col-sm-6">
                     <h4 class="box-title mt-5">Product description</h4>
                       <div class="card-body">
-                        <form action="{{ url('pesan') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('pesan') }}/{{ $products->id }}" method="POST" enctype="multipart/form-data">
                           @csrf
                               Food : {{ $products->food }} <br>
                               Dessert : {{ $products->dessert }} <br>
                               Drink : {{ $products->drink }} <br>
-                              Price : {{ $products->price }} <br><br>
+                              Price : {{ $products->price }} <br>
+                              <label for="Qty">Qty : </label>
+                              <input type="text" name="jumlah_pesan" class="form-" required=""><br>
                               <!-- <button class="btn btn-primary btn-rounded">Buy Now</button> | -->
-                              <button class="btn btn-info"><i class="fa fa-shopping-cart"> Add To Cart</i></button>
+                              <button type="submit" class="btn btn-info"><i class="fa fa-shopping-cart"> Add To Cart</i></button>
                         </form>
                       </div>
                 </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.apps')
 
 @section('content')
 <div class="container">
@@ -24,7 +24,7 @@
                             <label for="package">Package</label>
                             <input type="text" class="form-control" required="required" name="package"><br>
                         </div>
-                        <div class="form-group"> 
+                        <div class="form-group">
                             <label for="food">Food</label>
                             <input type="text" class="form-control" required="required" name="food"></br>
                         </div>
@@ -43,9 +43,9 @@
                         <div class="form-group">
                             <label for="images">Images</label>
                             <input type="file" class="form-control" required="required"  name="images"></br>
-                        <div> 
-                        <button type="submit" name="add" class="btn btn-primary float-right">Add Data</button>    
-                    </form>  
+                        <div>
+                        <button type="submit" name="add" class="btn btn-primary float-right">Add Data</button>
+                    </form>
                 </div>
             </div>
         </div>

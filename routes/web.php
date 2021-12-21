@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PesanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,10 @@ Route::get('/', function () {
 
 Route::resource('product', ProductController::class);
 
-// Route::get('order/{id}', 'ProductController@index');
-// Route::post('order/{id}', 'ProductController@pesan');
+Route::get('pesan/{id}', [PesanController::class, 'index']);
+Route::post('pesan/{id}', [PesanController::class, 'pesan']);
+// Route::post('pesan/{id}', 'PesanController@pesan');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
