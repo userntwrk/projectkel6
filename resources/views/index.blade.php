@@ -1,6 +1,8 @@
 @extends('layouts.apps')
 
 @section('content')
+
+@include('sweet::alert')
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="banner header-text">

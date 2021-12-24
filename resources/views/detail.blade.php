@@ -21,8 +21,6 @@
                               Dessert : {{ $products->dessert }} <br>
                               Drink : {{ $products->drink }} <br>
                               Price : {{ $products->price }} <br>
-                              <label for="Qty">Qty : </label>
-                              <input type="text" name="jumlah_pesan" class="form-" required=""><br>
                               <!-- <button class="btn btn-primary btn-rounded">Buy Now</button> | -->
                               <button type="submit" class="btn btn-info"><i class="fa fa-shopping-cart"> Add To Cart</i></button>
                         </form>

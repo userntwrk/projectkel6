@@ -9,6 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
+    <link rel="icon" href="{{ asset('images/logo.png') }}">
     <title>Nayamul Catering</title>
 
     <!-- Bootstrap core CSS -->
@@ -19,10 +20,11 @@
     <link rel="stylesheet" href="{{asset('css/templatemo-sixteen.css')}}">
     <link rel="stylesheet" href="{{asset('css/owl.css')}}">
 
+
 </head>
 
 <body>
-
+@include('sweet::alert')
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -49,16 +51,25 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
+                <a class="nav-link" href="#about">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="$">Contact Us</a>
+                <a class="nav-link" href="#contact">Contact Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('product/cart') }}"><i class="fa fa-shopping-cart"> Cart</i>
-                </a>
-              </ul>
-              </li>
+                <?php
+                  $pesanan_utama = \App\Models\Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+                  if(!empty($pesanan_utama)){
+                      $notif = \App\Models\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count();
+                  }
+                  ?>
+                  <a class="nav-link" href="{{ url('checkout') }}">
+                    <i class="fa fa-shopping-cart"></i>
+                      @if(!empty($notif))
+                          <span class="badge badge-danger">{{ $notif }}</span>
+                      @endif
+                    </a>
+               </li>
           </div>
         </div>
       </nav>
@@ -71,15 +82,14 @@
         <div class="row">
           <div class="col-md-12">
             <div class="inner-content">
-              <p>Copyright &copy; 2020 Nayamul Catering Co., Ltd.
+              <p>Copyright &copy; 2020
 
-            - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+             <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">Nayamul Catering Co., Ltd.</a></p>
             </div>
           </div>
         </div>
       </div>
     </footer>
-
 
     <!-- Bootstrap core JavaScript -->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
@@ -103,5 +113,10 @@
           }
       }
     </script>
+
+    <script src="{{ asset('sweetalert2.all.min.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   </body>
 </html>
