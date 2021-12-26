@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Comment;
+use Faker\Factory as Faker;
 
 class ProductController extends Controller
 {
@@ -54,7 +55,7 @@ class ProductController extends Controller
         $product = new Product;
 
         if($request->file('images')){
-            $image_name = $request->file('images')->store('images','public');
+        $image_name = $request->file('images')->store('images','public');
         }
 
         $product->id = $request->id;
@@ -70,7 +71,7 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::find($id);
+         $product = Product::find($id);
         $komen = Comment::all();
         return view('detail',['products'=>$product,'komen'=>$komen,'id'=>$id]);
     }
@@ -98,12 +99,18 @@ class ProductController extends Controller
           $user->id_product = $request->id;
           $user->profile_photo = $faker->imageUrl($width = 50, $height = 50);
           $user->save();
-          return redirect()->route(ProductController::class,'show',['id'=>$id]);
 
+          return redirect()->action(
+            [ProductController::class, 'show'], ['id' => $id]);
       }
 
-      public function about()
-      {
-          return view('about');
-      }
+    public function about()
+    {
+        return view('about');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
 }

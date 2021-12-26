@@ -34,9 +34,9 @@
             <div class="card my-4">
                 <h5 class="card-header">Leave a Comment</h5>
                 <div class="card-body">
-                    <form action="/product" method="post" enctype="multipart/form-data">
+                    <form action="/product/{{$products->id}}" method="post">
                     @csrf
-                        <div class="form-group">
+                        <div class="form-group" name="_token" value="<?php echo csrf_token() ?>">
                             <p>Name        : </p>
                             <input class="form-control" type="text" required="required" name="nama">
                         </div>
@@ -62,7 +62,5 @@
             </div>
             @endif
             @endforeach
-
-
 </div>
 @endsection
