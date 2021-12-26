@@ -8,6 +8,8 @@ use App\Models\PesananDetail;
 use Auth;
 use Alert;
 use Illuminate\Http\Request;
+use PDF;
+
 
 class HistoryController extends Controller
 {
@@ -29,5 +31,14 @@ class HistoryController extends Controller
     	$pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
 
      	return view('history.detail', compact('pesanan','pesanan_details'));
+    }
+
+    //REPORT
+    public function report($id){
+        $pesanan = Pesanan::find($id);
+        $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        $pdf = PDF::loadview('admin.report',['pesanan'=>$pesanan,'pesanan_details'=>$pesanan_details]);
+
+        return $pdf->stream();
     }
 }

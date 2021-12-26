@@ -49,8 +49,9 @@
 
                 </tr>
             </tbody>
-        </table>
+        </table><br>
         @endif
+        <a href="/admin/{{$pesanan->id}}/report" class="btn btn-primary" target="_blank">PRINT PDF</a>
 
     </div>
 </div>

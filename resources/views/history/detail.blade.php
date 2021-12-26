@@ -32,10 +32,8 @@
                                 <th>No</th>
                                 <th>Gambar</th>
                                 <th>Nama Barang</th>
-                                <th>Jumlah</th>
                                 <th>Harga</th>
                                 <th>Total Harga</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -71,7 +69,7 @@
                         </tbody>
                     </table>
                     @endif
-
+                    <a href="/history/{{$pesanan->id}}/report" class="btn btn-primary" target="_blank">PRINT PDF</a>
                 </div>
             </div>
         </div>

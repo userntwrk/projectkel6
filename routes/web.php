@@ -20,8 +20,10 @@ use App\Http\Controllers\ReportController;
 */
 
 Route::resource('product', ProductController::class);
+Route::get('about', [ProductController::class, 'about']);
 
 Route::resource('admin', AdminController::class);
+Route::get('admin/{id}/report', [HistoryController::class,'report']);
 
 Route::resource('report', ReportController::class);
 
@@ -37,6 +39,7 @@ Route::post('profile', [ProfileController::class, 'update']);
 
 Route::get('history', [HistoryController::class, 'index']);
 Route::get('history/{id}', [HistoryController::class, 'detail']);
+Route::get('history/{id}/report', [HistoryController::class,'report']);
 
 Auth::routes();
 

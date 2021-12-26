@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -53,7 +54,7 @@ class ProductController extends Controller
         $product = new Product;
 
         if($request->file('images')){
-        $image_name = $request->file('images')->store('images','public');
+            $image_name = $request->file('images')->store('images','public');
         }
 
         $product->id = $request->id;
@@ -67,50 +68,11 @@ class ProductController extends Controller
         $product->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $product = Product::find($id);
-        return view('detail',['products'=>$product]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $komen = Comment::all();
+        return view('detail',['products'=>$product,'komen'=>$komen,'id'=>$id]);
     }
 
     public function checkout($id)
@@ -124,4 +86,24 @@ class ProductController extends Controller
 
       return view('checkout', compact('product', 'product_det'));
     }
+
+      //commentare
+      public function insertData(Request $request,$id)
+      {
+          $faker = Faker::create();
+          $hasil = Product::find($id);
+          $user = new Comment();
+          $user->name = $request->nama;
+          $user->comment = $request->komentar;
+          $user->id_product = $request->id;
+          $user->profile_photo = $faker->imageUrl($width = 50, $height = 50);
+          $user->save();
+          return redirect()->route(ProductController::class,'show',['id'=>$id]);
+
+      }
+
+      public function about()
+      {
+          return view('about');
+      }
 }

@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Pesanan;
 use App\Models\PesananDetail;
 use Auth;
+use PDF;
 
 class ReportController extends Controller
 {
@@ -107,5 +108,13 @@ class ReportController extends Controller
         $pesanan = Pesanan::find($id);
         $pesanan->delete();
         return redirect()->route('admin.data_transaksi');
+    }
+
+    public function report($id){
+        $pesanan = Pesanan::find($id);
+        $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        $pdf = PDF::loadview('history.report',['pesanan'=>$pesanan,'pesanan_details'=>$pesanan_details]);
+
+        return $pdf->stream();
     }
 }

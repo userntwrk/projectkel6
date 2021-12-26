@@ -10,6 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>{{  $title }}</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('js/fontawesome-free/css/all.min.css') }}">
@@ -86,7 +87,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="{{ asset('images/logo.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="/admin" class="d-block">Admin ({{ Auth::user()->name }})</a>            
+          <a href="/admin" class="d-block">Admin ({{ Auth::user()->name }})</a>
         </div>
       </div>
 

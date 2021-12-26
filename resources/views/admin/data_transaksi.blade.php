@@ -48,7 +48,7 @@
                                         <td>{{ $p->kode }}</td>
                                         <td>{{ $p->user_id }}</td>
                                         <td>
-                                            @if($p->status == 1)
+                                            @if($p->status == 0)
                                             Sudah Pesan & Belum dibayar
                                             @else
                                             Sudah dibayar

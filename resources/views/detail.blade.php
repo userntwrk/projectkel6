@@ -29,5 +29,40 @@
             </div>
         </div>
     </div>
+    <br>
+            <!-- Comment-->
+            <div class="card my-4">
+                <h5 class="card-header">Leave a Comment</h5>
+                <div class="card-body">
+                    <form action="/product" method="post" enctype="multipart/form-data">
+                    @csrf
+                        <div class="form-group">
+                            <p>Name        : </p>
+                            <input class="form-control" type="text" required="required" name="nama">
+                        </div>
+                        <div class="form-group">
+                            <p>Comment     :</p>
+                            <input class="form-control" type="text" required="required" name="komentar">
+                        </div>
+                        <input type="submit" class="btn btn-primary"></button>
+                    </form>
+                </div>
+            </div>
+            <br>
+
+            <!--Single Comment-->
+            @foreach($komen as $k)
+            @if($k->id_product==$id)
+            <div class="media mb-4">
+                <img class="d-flex mr-3 rounded-circle" src="{{$k->profile_photo}}" alt="">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{$k->name}}</h5>
+                        <p>{{$k->comment}}</p>
+                    </div>
+            </div>
+            @endif
+            @endforeach
+
+
 </div>
 @endsection
