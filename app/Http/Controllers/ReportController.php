@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Pesanan;
 use App\Models\PesananDetail;
+use Auth;
 
 class ReportController extends Controller
 {
@@ -57,9 +58,19 @@ class ReportController extends Controller
      */
     public function show($id)
     {
+        // $pesanan = Pesanan::find($id);
+        // $pesanan_details = PesananDetail::find($id);
+        // return view('admin.detail_transaksi', ['pesanan'=>$pesanan], ['pesanan_details'=>$pesanan_details]);
+
+        $data = array('title' => 'Dashboard');
         $pesanan = Pesanan::find($id);
-        $pesanan_details = PesananDetail::find($id);
-        return view('admin.detail_transaksi', ['pesanan'=>$pesanan], ['pesanan_detail'=>$pesanan_details]);
+ 	      $pesanan_details = [];
+        if(!empty($pesanan))
+        {
+            $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        }
+
+        return view('admin.detail_transaksi', $data, compact('pesanan', 'pesanan_details'));
     }
 
     /**

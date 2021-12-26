@@ -47,7 +47,13 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $p->kode }}</td>
                                         <td>{{ $p->user_id }}</td>
-                                        <td>{{ $p->status }}</td>
+                                        <td>
+                                            @if($p->status == 1)
+                                            Sudah Pesan & Belum dibayar
+                                            @else
+                                            Sudah dibayar
+                                            @endif
+                                        </td>
                                         <td>{{ $p->jumlah_harga }}</td>
                                         <td>{{ $p->tanggal }}</td>
                                         <td>
