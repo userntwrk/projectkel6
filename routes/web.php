@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,10 @@ use App\Http\Controllers\HistoryController;
 */
 
 Route::resource('product', ProductController::class);
+
+Route::resource('admin', AdminController::class);
+
+Route::resource('report', ReportController::class);
 
 Route::get('pesan/{id}', [PesanController::class, 'index']);
 Route::post('pesan/{id}', [PesanController::class, 'pesan']);

@@ -15,6 +15,12 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    @can('admin')
+                        Selamat datang Admin
+                    @elsecan('user')
+                        Selamat datang User
+                    @endcan
                 </div>
             </div>
         </div>
